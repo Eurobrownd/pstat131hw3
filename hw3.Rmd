@@ -41,7 +41,7 @@ titanic_test <- testing(titanic_split)
 colSums(is.na(titanic_train)) / nrow(titanic_train)
 ```
 From looking at the training and testing sets, there are 3 varibles with missing data
-That being age at 0.189, cabin at 0.775, and embarked at 14.05
+That being age at 0.189, cabin at 0.775, and embarked at 0.0014
 Stratifying the data on survived allows us to make models that don't include survived
 as a prediction variable. And it gives us a sample of the data that represents the population
 
