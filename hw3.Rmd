@@ -49,6 +49,7 @@ as a prediction variable. And it gives us a sample of the data that represents t
 ```{r}
 titanic_train %>% ggplot(aes(x= survived)) + geom_bar()
 ```
+
 From the distribution, it seems that less people survived than those that died
 
 # q3
@@ -60,6 +61,8 @@ titanic_cor <- titanic_train %>%
   ggplot(aes(x, y, fill = r)) + geom_tile() + geom_text(aes(label = as.character(fashion(r))))
 titanic_cor
 ```
+
+
 positive correlations: age with sib_sp, sib_sp with parch, sib_sp with fare, parch with fare
 negative correlations: age with parch
 Though there are correlation values, none are that high with the highest being sib_sp and parch. Since
@@ -132,7 +135,7 @@ nb_fit <- fit(nb_wflow, titanic_train)
 ```
 
 # q9
-```{r}
+```{r include=FALSE}
 log_reg_predict <- predict(log_fit, new_data = titanic_train)
 lda_predict <- predict(lda_fit, new_data = titanic_train)
 qda_predict <- predict(qda_fit, new_data = titanic_train)
@@ -142,7 +145,7 @@ predict <- bind_cols(titanic_train %>% select(survived), log_reg_predict, lda_pr
                      qda_predict, nb_predict)
 ```
 
-```{r}
+```{r include=FALSE}
 log_reg_acc <- augment(log_fit, new_data = titanic_train) %>%
   accuracy(truth = survived, estimate = .pred_class)
 
@@ -182,6 +185,8 @@ augment(log_fit, new_data= titanic_test) %>%
   roc_curve(survived, .pred_No) %>% 
   autoplot()
 ```
+
+
 From the matrix, we can see the model performed slightly worse than on the training data
 This may be due to the small size of the testing data compared to that of the training data
 Overall, the performance of the model is quite good as it is generally around 80% correct on
